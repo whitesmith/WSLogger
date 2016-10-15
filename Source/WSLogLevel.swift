@@ -1,5 +1,5 @@
 //
-//  WSLog.swift
+//  WSLogLevel.swift
 //  WSLogger
 //
 //  Created by Ricardo Pereira on 14/10/2016.
@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// Severity of the log.
 public enum WSLogLevel: Int {
     case None
     case Error
@@ -15,10 +16,4 @@ public enum WSLogLevel: Int {
     case Info
     case Debug
     case Verbose
-}
-
-public struct WSLogOptions {
-    /// Ex: if `level` is DEBUG then all the VERBOSE entries will be ignored.
-    /// Default: VERBOSE, accept all log entries.
-    public static var level = WSLogLevel.Verbose
 }

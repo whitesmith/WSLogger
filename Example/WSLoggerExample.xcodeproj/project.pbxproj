@@ -1,0 +1,496 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D73F32381DB280E700E7DBF4 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = D73F32371DB280E700E7DBF4 /* Logger.swift */; };
+		D73F323A1DB282B400E7DBF4 /* WSLogger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7D35E961DB229D1005CD7E9 /* WSLogger.framework */; };
+		D7D35E7F1DB228BF005CD7E9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D35E7E1DB228BF005CD7E9 /* AppDelegate.swift */; };
+		D7D35E811DB228BF005CD7E9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D35E801DB228BF005CD7E9 /* ViewController.swift */; };
+		D7D35E841DB228BF005CD7E9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D7D35E821DB228BF005CD7E9 /* Main.storyboard */; };
+		D7D35E861DB228BF005CD7E9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D7D35E851DB228BF005CD7E9 /* Assets.xcassets */; };
+		D7D35E891DB228BF005CD7E9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D7D35E871DB228BF005CD7E9 /* LaunchScreen.storyboard */; };
+		D7D35E9A1DB22A63005CD7E9 /* WSLogger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7D35E961DB229D1005CD7E9 /* WSLogger.framework */; };
+		D7D35E9B1DB22A63005CD7E9 /* WSLogger.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D7D35E961DB229D1005CD7E9 /* WSLogger.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D7D35EA61DB22D10005CD7E9 /* WSLoggerExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D35EA51DB22D10005CD7E9 /* WSLoggerExampleTests.swift */; };
+		D7D35EAE1DB22DB5005CD7E9 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D35EAD1DB22DB5005CD7E9 /* ViewModel.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D7D35E951DB229D1005CD7E9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D7D35E901DB229D0005CD7E9 /* WSLogger.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D7D35E511DB13036005CD7E9;
+			remoteInfo = WSLogger;
+		};
+		D7D35E971DB229D1005CD7E9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D7D35E901DB229D0005CD7E9 /* WSLogger.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D7D35E5B1DB13036005CD7E9;
+			remoteInfo = WSLoggerTests;
+		};
+		D7D35E9C1DB22A63005CD7E9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D7D35E901DB229D0005CD7E9 /* WSLogger.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = D7D35E501DB13036005CD7E9;
+			remoteInfo = WSLogger;
+		};
+		D7D35EA81DB22D10005CD7E9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D7D35E731DB228BF005CD7E9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D7D35E7A1DB228BF005CD7E9;
+			remoteInfo = WSLoggerExample;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		D7D35E9E1DB22A63005CD7E9 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				D7D35E9B1DB22A63005CD7E9 /* WSLogger.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		D73F32371DB280E700E7DBF4 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		D7D35E7B1DB228BF005CD7E9 /* WSLoggerExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WSLoggerExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D7D35E7E1DB228BF005CD7E9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		D7D35E801DB228BF005CD7E9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		D7D35E831DB228BF005CD7E9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		D7D35E851DB228BF005CD7E9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D7D35E881DB228BF005CD7E9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		D7D35E8A1DB228BF005CD7E9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D7D35E901DB229D0005CD7E9 /* WSLogger.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = WSLogger.xcodeproj; path = ../WSLogger.xcodeproj; sourceTree = "<group>"; };
+		D7D35EA31DB22D10005CD7E9 /* WSLoggerExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WSLoggerExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D7D35EA51DB22D10005CD7E9 /* WSLoggerExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WSLoggerExampleTests.swift; sourceTree = "<group>"; };
+		D7D35EA71DB22D10005CD7E9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D7D35EAD1DB22DB5005CD7E9 /* ViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D7D35E781DB228BF005CD7E9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D7D35E9A1DB22A63005CD7E9 /* WSLogger.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D7D35EA01DB22D10005CD7E9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D73F323A1DB282B400E7DBF4 /* WSLogger.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D7D35E721DB228BF005CD7E9 = {
+			isa = PBXGroup;
+			children = (
+				D7D35E7D1DB228BF005CD7E9 /* WSLoggerExample */,
+				D7D35EA41DB22D10005CD7E9 /* WSLoggerExampleTests */,
+				D7D35E7C1DB228BF005CD7E9 /* Products */,
+				D7D35E901DB229D0005CD7E9 /* WSLogger.xcodeproj */,
+			);
+			sourceTree = "<group>";
+		};
+		D7D35E7C1DB228BF005CD7E9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D7D35E7B1DB228BF005CD7E9 /* WSLoggerExample.app */,
+				D7D35EA31DB22D10005CD7E9 /* WSLoggerExampleTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D7D35E7D1DB228BF005CD7E9 /* WSLoggerExample */ = {
+			isa = PBXGroup;
+			children = (
+				D7D35E7E1DB228BF005CD7E9 /* AppDelegate.swift */,
+				D73F32371DB280E700E7DBF4 /* Logger.swift */,
+				D7D35E801DB228BF005CD7E9 /* ViewController.swift */,
+				D7D35EAD1DB22DB5005CD7E9 /* ViewModel.swift */,
+				D7D35E821DB228BF005CD7E9 /* Main.storyboard */,
+				D7D35E851DB228BF005CD7E9 /* Assets.xcassets */,
+				D7D35E871DB228BF005CD7E9 /* LaunchScreen.storyboard */,
+				D7D35E8A1DB228BF005CD7E9 /* Info.plist */,
+			);
+			path = WSLoggerExample;
+			sourceTree = "<group>";
+		};
+		D7D35E911DB229D0005CD7E9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D7D35E961DB229D1005CD7E9 /* WSLogger.framework */,
+				D7D35E981DB229D1005CD7E9 /* WSLoggerTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D7D35EA41DB22D10005CD7E9 /* WSLoggerExampleTests */ = {
+			isa = PBXGroup;
+			children = (
+				D7D35EA51DB22D10005CD7E9 /* WSLoggerExampleTests.swift */,
+				D7D35EA71DB22D10005CD7E9 /* Info.plist */,
+			);
+			path = WSLoggerExampleTests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D7D35E7A1DB228BF005CD7E9 /* WSLoggerExample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D7D35E8D1DB228BF005CD7E9 /* Build configuration list for PBXNativeTarget "WSLoggerExample" */;
+			buildPhases = (
+				D7D35E771DB228BF005CD7E9 /* Sources */,
+				D7D35E781DB228BF005CD7E9 /* Frameworks */,
+				D7D35E791DB228BF005CD7E9 /* Resources */,
+				D7D35E9E1DB22A63005CD7E9 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D7D35E9D1DB22A63005CD7E9 /* PBXTargetDependency */,
+			);
+			name = WSLoggerExample;
+			productName = WSLoggerExample;
+			productReference = D7D35E7B1DB228BF005CD7E9 /* WSLoggerExample.app */;
+			productType = "com.apple.product-type.application";
+		};
+		D7D35EA21DB22D10005CD7E9 /* WSLoggerExampleTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D7D35EAA1DB22D10005CD7E9 /* Build configuration list for PBXNativeTarget "WSLoggerExampleTests" */;
+			buildPhases = (
+				D7D35E9F1DB22D10005CD7E9 /* Sources */,
+				D7D35EA01DB22D10005CD7E9 /* Frameworks */,
+				D7D35EA11DB22D10005CD7E9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D7D35EA91DB22D10005CD7E9 /* PBXTargetDependency */,
+			);
+			name = WSLoggerExampleTests;
+			productName = WSLoggerExampleTests;
+			productReference = D7D35EA31DB22D10005CD7E9 /* WSLoggerExampleTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D7D35E731DB228BF005CD7E9 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = Whitesmith;
+				TargetAttributes = {
+					D7D35E7A1DB228BF005CD7E9 = {
+						CreatedOnToolsVersion = 7.3.1;
+					};
+					D7D35EA21DB22D10005CD7E9 = {
+						CreatedOnToolsVersion = 7.3.1;
+						TestTargetID = D7D35E7A1DB228BF005CD7E9;
+					};
+				};
+			};
+			buildConfigurationList = D7D35E761DB228BF005CD7E9 /* Build configuration list for PBXProject "WSLoggerExample" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = D7D35E721DB228BF005CD7E9;
+			productRefGroup = D7D35E7C1DB228BF005CD7E9 /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = D7D35E911DB229D0005CD7E9 /* Products */;
+					ProjectRef = D7D35E901DB229D0005CD7E9 /* WSLogger.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				D7D35E7A1DB228BF005CD7E9 /* WSLoggerExample */,
+				D7D35EA21DB22D10005CD7E9 /* WSLoggerExampleTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		D7D35E961DB229D1005CD7E9 /* WSLogger.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = WSLogger.framework;
+			remoteRef = D7D35E951DB229D1005CD7E9 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D7D35E981DB229D1005CD7E9 /* WSLoggerTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = WSLoggerTests.xctest;
+			remoteRef = D7D35E971DB229D1005CD7E9 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D7D35E791DB228BF005CD7E9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D7D35E891DB228BF005CD7E9 /* LaunchScreen.storyboard in Resources */,
+				D7D35E861DB228BF005CD7E9 /* Assets.xcassets in Resources */,
+				D7D35E841DB228BF005CD7E9 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D7D35EA11DB22D10005CD7E9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D7D35E771DB228BF005CD7E9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D7D35E811DB228BF005CD7E9 /* ViewController.swift in Sources */,
+				D7D35EAE1DB22DB5005CD7E9 /* ViewModel.swift in Sources */,
+				D7D35E7F1DB228BF005CD7E9 /* AppDelegate.swift in Sources */,
+				D73F32381DB280E700E7DBF4 /* Logger.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D7D35E9F1DB22D10005CD7E9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D7D35EA61DB22D10005CD7E9 /* WSLoggerExampleTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D7D35E9D1DB22A63005CD7E9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = WSLogger;
+			targetProxy = D7D35E9C1DB22A63005CD7E9 /* PBXContainerItemProxy */;
+		};
+		D7D35EA91DB22D10005CD7E9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D7D35E7A1DB228BF005CD7E9 /* WSLoggerExample */;
+			targetProxy = D7D35EA81DB22D10005CD7E9 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		D7D35E821DB228BF005CD7E9 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D7D35E831DB228BF005CD7E9 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		D7D35E871DB228BF005CD7E9 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D7D35E881DB228BF005CD7E9 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		D7D35E8B1DB228BF005CD7E9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		D7D35E8C1DB228BF005CD7E9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D7D35E8E1DB228BF005CD7E9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				INFOPLIST_FILE = WSLoggerExample/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = co.whitesmith.WSLoggerExample;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		D7D35E8F1DB228BF005CD7E9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				INFOPLIST_FILE = WSLoggerExample/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = co.whitesmith.WSLoggerExample;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		D7D35EAB1DB22D10005CD7E9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = WSLoggerExampleTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = co.whitesmith.WSLoggerExampleTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WSLoggerExample.app/WSLoggerExample";
+			};
+			name = Debug;
+		};
+		D7D35EAC1DB22D10005CD7E9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = WSLoggerExampleTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = co.whitesmith.WSLoggerExampleTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WSLoggerExample.app/WSLoggerExample";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D7D35E761DB228BF005CD7E9 /* Build configuration list for PBXProject "WSLoggerExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D7D35E8B1DB228BF005CD7E9 /* Debug */,
+				D7D35E8C1DB228BF005CD7E9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D7D35E8D1DB228BF005CD7E9 /* Build configuration list for PBXNativeTarget "WSLoggerExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D7D35E8E1DB228BF005CD7E9 /* Debug */,
+				D7D35E8F1DB228BF005CD7E9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D7D35EAA1DB22D10005CD7E9 /* Build configuration list for PBXNativeTarget "WSLoggerExampleTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D7D35EAB1DB22D10005CD7E9 /* Debug */,
+				D7D35EAC1DB22D10005CD7E9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D7D35E731DB228BF005CD7E9 /* Project object */;
+}

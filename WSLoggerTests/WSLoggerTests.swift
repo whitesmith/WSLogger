@@ -30,11 +30,12 @@ class WSLoggerTests: XCTestCase {
     override func setUp() {
         super.setUp()
         Recorder.clear()
+        WSLogger.shared.printable = MockPrintable()
     }
 
     func testInternalLog() {
-        WSInternalLog(printable: MockPrintable()).log("Let's go!")
-        XCTAssertTrue(Recorder.messages[0] == "WSLoggerTests.swift:36 testInternalLog() DEBUG \"Let's go!\" [nil]")
+        WSLogger.shared.log("Let's go!", level: .Debug, customAttributes: nil, className: String(self.dynamicType))
+        XCTAssertTrue(Recorder.messages[0] == "WSLoggerTests.swift:37 WSLoggerTests.testInternalLog() DEBUG \"Let's go!\" [nil]")
     }
 
 }

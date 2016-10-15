@@ -11,8 +11,8 @@
 		D7D35E5C1DB13036005CD7E9 /* WSLogger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7D35E511DB13036005CD7E9 /* WSLogger.framework */; };
 		D7D35E611DB13036005CD7E9 /* WSLoggerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D35E601DB13036005CD7E9 /* WSLoggerTests.swift */; };
 		D7D35E6D1DB135BB005CD7E9 /* WSLoggable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D35E6C1DB135BB005CD7E9 /* WSLoggable.swift */; };
-		D7D35E6F1DB15603005CD7E9 /* WSInternalLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D35E6E1DB15603005CD7E9 /* WSInternalLog.swift */; };
-		D7D35E711DB1561E005CD7E9 /* WSLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D35E701DB1561E005CD7E9 /* WSLog.swift */; };
+		D7D35E6F1DB15603005CD7E9 /* WSLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D35E6E1DB15603005CD7E9 /* WSLogger.swift */; };
+		D7D35E711DB1561E005CD7E9 /* WSLogLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D35E701DB1561E005CD7E9 /* WSLogLevel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,8 +33,8 @@
 		D7D35E601DB13036005CD7E9 /* WSLoggerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WSLoggerTests.swift; sourceTree = "<group>"; };
 		D7D35E621DB13036005CD7E9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D7D35E6C1DB135BB005CD7E9 /* WSLoggable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WSLoggable.swift; path = Source/WSLoggable.swift; sourceTree = SOURCE_ROOT; };
-		D7D35E6E1DB15603005CD7E9 /* WSInternalLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WSInternalLog.swift; path = Source/WSInternalLog.swift; sourceTree = SOURCE_ROOT; };
-		D7D35E701DB1561E005CD7E9 /* WSLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WSLog.swift; path = Source/WSLog.swift; sourceTree = SOURCE_ROOT; };
+		D7D35E6E1DB15603005CD7E9 /* WSLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WSLogger.swift; path = Source/WSLogger.swift; sourceTree = SOURCE_ROOT; };
+		D7D35E701DB1561E005CD7E9 /* WSLogLevel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WSLogLevel.swift; path = Source/WSLogLevel.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,8 +79,8 @@
 			children = (
 				D7D35E541DB13036005CD7E9 /* WSLogger.h */,
 				D7D35E6C1DB135BB005CD7E9 /* WSLoggable.swift */,
-				D7D35E701DB1561E005CD7E9 /* WSLog.swift */,
-				D7D35E6E1DB15603005CD7E9 /* WSInternalLog.swift */,
+				D7D35E701DB1561E005CD7E9 /* WSLogLevel.swift */,
+				D7D35E6E1DB15603005CD7E9 /* WSLogger.swift */,
 				D7D35E561DB13036005CD7E9 /* Info.plist */,
 			);
 			path = WSLogger;
@@ -203,9 +203,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D7D35E711DB1561E005CD7E9 /* WSLog.swift in Sources */,
+				D7D35E711DB1561E005CD7E9 /* WSLogLevel.swift in Sources */,
 				D7D35E6D1DB135BB005CD7E9 /* WSLoggable.swift in Sources */,
-				D7D35E6F1DB15603005CD7E9 /* WSInternalLog.swift in Sources */,
+				D7D35E6F1DB15603005CD7E9 /* WSLogger.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
