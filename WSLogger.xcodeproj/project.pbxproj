@@ -78,9 +78,9 @@
 			isa = PBXGroup;
 			children = (
 				D7D35E541DB13036005CD7E9 /* WSLogger.h */,
+				D7D35E6E1DB15603005CD7E9 /* WSLogger.swift */,
 				D7D35E6C1DB135BB005CD7E9 /* WSLoggable.swift */,
 				D7D35E701DB1561E005CD7E9 /* WSLogLevel.swift */,
-				D7D35E6E1DB15603005CD7E9 /* WSLogger.swift */,
 				D7D35E561DB13036005CD7E9 /* Info.plist */,
 			);
 			path = WSLogger;

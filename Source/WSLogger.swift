@@ -12,8 +12,8 @@ import Foundation
 
 public struct WSLoggerOptions {
     /// Ex: if `level` is DEBUG then all the VERBOSE entries will be ignored.
-    /// Default: VERBOSE, accept all log entries.
-    public static var defaultLevel = WSLogLevel.Verbose
+    /// Default: DEBUG.
+    public static var defaultLevel = WSLogLevel.Debug
 }
 
 final public class WSLogger {
@@ -23,25 +23,45 @@ final public class WSLogger {
 
     public private(set) static var shared = WSLogger()
 
+    /// Show the filename and line number on the log entry.
+    public var traceFile: Bool = false
+    /// Show the class and function on the log entry.
+    public var traceMethod: Bool = false
+
     public init() {
         self.printable = WSConsole()
     }
 
     /// Log locally
     public func log(message: String, level: WSLogLevel = .Debug, customAttributes: [String:AnyObject]? = nil, className: String = "", fileName: NSString = #file, line: Int = #line, function: String = #function) {
-        guard logAllowed(className: className) else { return }
-        if level.rawValue <= WSLoggerOptions.defaultLevel.rawValue {
-            printable.print("\(fileName.lastPathComponent):\(line) \(className).\(function) \(String.init(level).uppercaseString) \"\(message)\" [\(customAttributes)]")
+        assert(level != .None)
+        guard logAllowed(level, className: className) else { return }
+        var traceInfo = ""
+        if traceFile {
+            traceInfo += fileName.lastPathComponent + ":" + String(line) + " "
         }
+        if traceMethod {
+            traceInfo += className.isEmpty ? function : className + "." + function
+            traceInfo += " "
+        }
+        printable.print("\(traceInfo)\(String.init(level).uppercaseString) \"\(message)\" [\(customAttributes)]")
     }
 
-    ///
+    /// Reset logger settings.
+    public func reset() {
+        printable = WSConsole()
+        traceFile = false
+        traceMethod = false
+        disabledSymbols.removeAll()
+    }
+
+    /// Ignore log entries that derived from a class.
     public func ignoreClass(type: AnyClass) {
         disabledSymbols.insert(String(type))
     }
 
-    private func logAllowed(className className: String) -> Bool {
-        return !disabledSymbols.contains(className)
+    private func logAllowed(level: WSLogLevel, className: String) -> Bool {
+        return level.rawValue <= WSLoggerOptions.defaultLevel.rawValue && !disabledSymbols.contains(className)
     }
 
 }
