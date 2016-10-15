@@ -3,19 +3,20 @@
 [![Carthage Compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg)](https://github.com/Carthage/Carthage)
 [![SwiftPM Compatible](https://img.shields.io/badge/SwiftPM-Compatible-brightgreen.svg)](https://swift.org/package-manager/)
 [![CocoaPods Compatible](https://img.shields.io/cocoapods/v/WSLogger.svg)](https://cocoapods.org/pods/WSLogger)
-[![Swift 3.0](https://img.shields.io/badge/Swift-3.0-orange.svg?style=flat)](https://developer.apple.com/swift/)
+[![Swift 3.0](https://img.shields.io/badge/Swift-2.2-orange.svg?style=flat)](https://developer.apple.com/swift/)
 [![Platforms iOS](https://img.shields.io/badge/Platforms-iOS-lightgray.svg?style=flat)](http://www.apple.com/ios/)
-[![Build Status](https://www.bitrise.io/app/059bc89743c769dc.svg?token=Wu0zdJtTsCQlVFSG1XuGIw&branch=master)](https://www.bitrise.io/app/059bc89743c769dc)
+[![Build Status](https://www.bitrise.io/app/c0d00066e83871d0.svg?token=F4rPP7Jp0rT4dUqaE63fuw&branch=master)](https://www.bitrise.io/app/059bc89743c769dc)
 [![License MIT](https://img.shields.io/badge/License-MIT-lightgrey.svg?style=flat)](https://opensource.org/licenses/MIT)
 
 An iOS logger where it's possible to extend the log functionality.
 
 ## Usage
 
+For example, create a `Logger.swift` and add your implementation of `WSLoggable`:
+
 ``` swift
 import WSLogger
 
-// Your Loggable implementation
 extension WSLoggable {
     func log(message: String, level: WSLogLevel = .Debug, customAttributes: [String : AnyObject]? = nil, fileName: NSString = #file, line: Int = #line, function: String = #function) {
         // Log internally
@@ -25,14 +26,33 @@ extension WSLoggable {
     }
 }
 
+```
+
+You can add a `typealias` to avoid importing the `WSLogger` on every file:
+
+``` swift
+typealias Loggable = WSLoggable
+typealias LoggerOptions = WSLoggerOptions
+typealias LogLevel = WSLogLevel
+
+```
+
+Then use the protocol `Loggable` where you want. The function `log` will be accessible:
+
+``` swift
 struct WSTableViewCell: Loggable {
     func configure(viewModel: ViewModel) {
         log("Bind model data with views")
         ...
     }
 }
-
 ```
+
+It's possible to change the log level with `LoggerOptions.defaultLevel` property. For example, if `LoggerOptions.defaultLevel ` is `Debug` then all the `Verbose` entries will be ignored.
+
+You can add `LoggerOptions.defaultLevel = .None` to discard any log events on your test suite. It's also possible ignoring classes with `Logger.shared.ignoreClass(WSTableViewCell)`.
+
+You can execute those operations in debug mode as well. Just write in the console `expr -- Logger.shared.ignoreClass(WSTableViewCell)`.
 
 ## Installation
 
@@ -87,3 +107,4 @@ The best way to contribute is by submitting a pull request. We'll do our best to
 # Credits
 ![Whitesmith](http://i.imgur.com/Si2l3kd.png)
 
+Checkout the excelent topic on [Logging in Swift](http://merowing.info/2016/07/logging-in-swift/) from [Krzysztof Zabłocki](https://twitter.com/merowing_).
