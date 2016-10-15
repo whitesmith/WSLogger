@@ -8,13 +8,22 @@
 
 import Foundation
 import WSLogger
+import lelib
+
+func loggerSetup() {
+    LoggerOptions.defaultLevel = .Debug
+    WSLogger.shared.traceFile = true
+    WSLogger.shared.traceMethod = true
+    // LogEntries
+    LELog.sharedInstance().token = "XXXX-XXX-XXX-XXXX"
+}
 
 extension WSLoggable {
     func log(message: String, level: WSLogLevel = .Debug, customAttributes: [String : AnyObject]? = nil, fileName: NSString = #file, line: Int = #line, function: String = #function) {
         // Log internally
-        WSLogger.shared.log(message, level: level, customAttributes: customAttributes, className: String(self.dynamicType), fileName: fileName, line: line, function: function)
+        let text = WSLogger.shared.log(message, level: level, customAttributes: customAttributes, className: String(self.dynamicType), fileName: fileName, line: line, function: function)
         // Log remotely
-        // Fabric ?!
+        LELog.sharedInstance().log(text)
     }
 }
 

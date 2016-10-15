@@ -33,9 +33,10 @@ final public class WSLogger {
     }
 
     /// Log locally
-    public func log(message: String, level: WSLogLevel = .Debug, customAttributes: [String:AnyObject]? = nil, className: String = "", fileName: NSString = #file, line: Int = #line, function: String = #function) {
+    public func log(message: String, level: WSLogLevel = .Debug, customAttributes: [String:AnyObject]? = nil, className: String = "", fileName: NSString = #file, line: Int = #line, function: String = #function) -> String {
         assert(level != .None)
-        guard logAllowed(level, className: className) else { return }
+        guard logAllowed(level, className: className) else { return "" }
+
         var traceInfo = ""
         if traceFile {
             traceInfo += fileName.lastPathComponent + ":" + String(line) + " "
@@ -44,7 +45,9 @@ final public class WSLogger {
             traceInfo += className.isEmpty ? function : className + "." + function
             traceInfo += " "
         }
-        printable.print("\(traceInfo)\(String.init(level).uppercaseString) \"\(message)\" [\(customAttributes)]")
+        let text = "\(traceInfo)\(String.init(level).uppercaseString) \"\(message)\" [\(customAttributes)]"
+        printable.print(text)
+        return text
     }
 
     /// Reset logger settings.

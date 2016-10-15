@@ -8,11 +8,11 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, Loggable {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        log("Test from WSLogger")
     }
 
 }
