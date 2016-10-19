@@ -54,6 +54,39 @@ You can add `LoggerOptions.defaultLevel = .None` to discard any log events on yo
 
 You can execute those operations in debug mode as well. Just write in the console `expr -- Logger.shared.ignoreClass(WSTableViewCell)`.
 
+
+### Extend the log mechanism: example using [LogEntries](https://docs.logentries.com/docs/ios)
+
+You can extend the log mechanism as you want. For example, if you want to access the log entries online:
+
+![LogEntries dashboard](https://github.com/whitesmith/WSLogger/blob/6b1e61e3c82e41b2fd0596cf6b16d32c9df32f20/Example/LogEntries.png?raw=true)
+
+``` swift
+import Foundation
+import WSLogger
+import lelib //LogEntries iOS lib
+
+func loggerSetup() {
+    LoggerOptions.defaultLevel = .Debug
+    WSLogger.shared.traceFile = true
+    WSLogger.shared.traceMethod = true
+    // LogEntries
+    LELog.sharedInstance().token = "XXXX-XXX-XXX-XXXX"
+}
+
+extension WSLoggable {
+    func log(message: String, level: WSLogLevel = .Debug, customAttributes: [String : AnyObject]? = nil, fileName: NSString = #file, line: Int = #line, function: String = #function) {
+        // Log internally
+        let text = WSLogger.shared.log(message, level: level, customAttributes: customAttributes, className: String(self.dynamicType), fileName: fileName, line: line, function: function)
+        // Log remotely
+        LELog.sharedInstance().log(text)
+    }
+}
+```
+
+The complete example is available [here](https://github.com/whitesmith/WSLogger/tree/master/Example).
+
+
 ## Installation
 
 #### <img src="https://cloud.githubusercontent.com/assets/432536/5252404/443d64f4-7952-11e4-9d26-fc5cc664cb61.png" width="24" height="24"> [Carthage]
