@@ -11,7 +11,7 @@ import XCTest
 
 private struct Recorder {
     static var messages: [String] = []
-    static func add(message: String) {
+    static func add(_ message: String) {
         messages.append(message)
     }
     static func clear() {
@@ -20,7 +20,7 @@ private struct Recorder {
 }
 
 private class MockPrintable: WSPrintable {
-    func print(message: String) {
+    func print(_ message: String) {
         Recorder.add(message)
     }
 }
@@ -42,15 +42,15 @@ class WSLoggerTests: XCTestCase {
     }
 
     func testDefaultLogIgnoresVerboseEntries() {
-        WSLogger.shared.log("Let's go!", level: .Verbose)
+        WSLogger.shared.log("Let's go!", level: .verbose)
         XCTAssertTrue(Recorder.messages.count == 0)
     }
 
     func testVerboseLog() {
         let defaultLevel = WSLoggerOptions.defaultLevel
         defer { WSLoggerOptions.defaultLevel = defaultLevel }
-        WSLoggerOptions.defaultLevel = .Verbose
-        WSLogger.shared.log("ZZZzzZzZZZ", level: .Verbose, customAttributes: nil, className: String(self.dynamicType))
+        WSLoggerOptions.defaultLevel = .verbose
+        WSLogger.shared.log("ZZZzzZzZZZ", level: .verbose, customAttributes: nil, className: String(describing: type(of: self)))
         if let message = Recorder.messages.first {
             XCTAssertTrue(message == "VERBOSE \"ZZZzzZzZZZ\" [nil]")
         }
@@ -58,7 +58,7 @@ class WSLoggerTests: XCTestCase {
 
     func testCustomAttributesLog() {
         WSLogger.shared.traceMethod = true
-        WSLogger.shared.log("Nice, really nice.", level: .Info, customAttributes: ["user": 4])
+        WSLogger.shared.log("Nice, really nice.", level: .info, customAttributes: ["user": 4])
         if let message = Recorder.messages.first {
             XCTAssertTrue(message == "testCustomAttributesLog() INFO \"Nice, really nice.\" [Optional([\"user\": 4])]")
         }
@@ -67,15 +67,15 @@ class WSLoggerTests: XCTestCase {
     func testCompleteTraceLog() {
         WSLogger.shared.traceFile = true
         WSLogger.shared.traceMethod = true
-        WSLogger.shared.log("Nice, really nice.", level: .Info, customAttributes: nil, className: String(self.dynamicType))
+        WSLogger.shared.log("Nice, really nice.", level: .info, customAttributes: nil, className: String(describing: type(of: self)))
         if let message = Recorder.messages.first {
             XCTAssertTrue(message == "WSLoggerTests.swift:70 WSLoggerTests.testCompleteTraceLog() INFO \"Nice, really nice.\" [nil]")
         }
     }
 
     func testLoggerIgnoreClass() {
-        WSLogger.shared.ignoreClass(WSLoggerTests)
-        WSLogger.shared.log("Great!", level: .Verbose, customAttributes: nil, className: String(self.dynamicType))
+        WSLogger.shared.ignoreClass(WSLoggerTests.self)
+        WSLogger.shared.log("Great!", level: .verbose, customAttributes: nil, className: String(describing: type(of: self)))
         XCTAssertTrue(Recorder.messages.count == 0)
     }
 

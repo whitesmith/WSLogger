@@ -13,7 +13,7 @@ import Foundation
 public struct WSLoggerOptions {
     /// Ex: if `level` is DEBUG then all the VERBOSE entries will be ignored.
     /// Default: DEBUG.
-    public static var defaultLevel = WSLogLevel.Debug
+    public static var defaultLevel = WSLogLevel.debug
 }
 
 final public class WSLogger {
@@ -21,7 +21,7 @@ final public class WSLogger {
     internal var printable: WSPrintable
     internal var disabledSymbols = Set<String>()
 
-    public private(set) static var shared = WSLogger()
+    public fileprivate(set) static var shared = WSLogger()
 
     /// Show the filename and line number on the log entry.
     public var traceFile: Bool = false
@@ -33,8 +33,9 @@ final public class WSLogger {
     }
 
     /// Log locally
-    public func log(message: String, level: WSLogLevel = .Debug, customAttributes: [String:AnyObject]? = nil, className: String = "", fileName: NSString = #file, line: Int = #line, function: String = #function) -> String {
-        assert(level != .None)
+    @discardableResult
+    public func log(_ message: String, level: WSLogLevel = .debug, customAttributes: [String:Any]? = nil, className: String = "", fileName: NSString = #file, line: Int = #line, function: String = #function) -> String {
+        assert(level != .none)
         guard logAllowed(level, className: className) else { return "" }
 
         var traceInfo = ""
@@ -45,7 +46,7 @@ final public class WSLogger {
             traceInfo += className.isEmpty ? function : className + "." + function
             traceInfo += " "
         }
-        let text = "\(traceInfo)\(String.init(level).uppercaseString) \"\(message)\" [\(customAttributes)]"
+        let text = "\(traceInfo)\(String.init(describing: level).uppercased()) \"\(message)\" [\(customAttributes)]"
         printable.print(text)
         return text
     }
@@ -59,22 +60,22 @@ final public class WSLogger {
     }
 
     /// Ignore log entries that derived from a class.
-    public func ignoreClass(type: AnyClass) {
-        disabledSymbols.insert(String(type))
+    public func ignoreClass(_ type: AnyClass) {
+        disabledSymbols.insert(String(describing: type))
     }
 
-    private func logAllowed(level: WSLogLevel, className: String) -> Bool {
+    fileprivate func logAllowed(_ level: WSLogLevel, className: String) -> Bool {
         return level.rawValue <= WSLoggerOptions.defaultLevel.rawValue && !disabledSymbols.contains(className)
     }
 
 }
 
 internal protocol WSPrintable {
-    func print(message: String)
+    func print(_ message: String)
 }
 
 private class WSConsole: WSPrintable {
-    func print(message: String) {
-        Swift.print("\(NSDate()) \(message)")
+    func print(_ message: String) {
+        Swift.print("\(Date()) \(message)")
     }
 }
