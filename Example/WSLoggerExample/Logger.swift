@@ -60,3 +60,8 @@ func logEntryIf(condition: Bool, message: String, level: LogLevel, className: St
     }
     logEntry(message, level: level, className: className, fileName: fileName, line: line, function: function)
 }
+
+func logError(error: ErrorType, className: String = "", fileName: NSString = #file, line: Int = #line, function: String = #function) {
+    let e = error as NSError
+    logEntry(e.localizedDescription, level: .Error, customAttributes: ["Code": e.code, "Domain": e.domain], className: className, fileName: fileName, line: line, function: function)
+}
