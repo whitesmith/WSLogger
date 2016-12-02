@@ -53,3 +53,10 @@ private func logEntry(message: String, level: LogLevel = .Debug, customAttribute
 func logEntry(identifier: String, message: String, level: LogLevel, className: String = "", fileName: NSString = #file, line: Int = #line, function: String = #function) {
     logEntry(message, level: level, customAttributes: ["ID": identifier], className: className, fileName: fileName, line: line, function: function)
 }
+
+func logEntryIf(condition: Bool, message: String, level: LogLevel, className: String = "", fileName: NSString = #file, line: Int = #line, function: String = #function) {
+    if !condition {
+        return
+    }
+    logEntry(message, level: level, className: className, fileName: fileName, line: line, function: function)
+}

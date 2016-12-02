@@ -14,6 +14,8 @@ class ViewController: UIViewController, Loggable {
         super.viewDidLoad()
         log("Test using Loggable")
         logEntry(NSUUID().UUIDString, message: "App has started", level: .Info)
+        logEntryIf(true, message: "App is not ready", level: .Warning)
+        logEntryIf(false, message: "App is ready", level: .Warning)
     }
 
     class func register() {
