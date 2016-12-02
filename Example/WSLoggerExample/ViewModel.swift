@@ -9,7 +9,13 @@
 import Foundation
 
 struct ViewModel: Loggable {
+
     func configure() {
         log("Bind model data with views")
     }
+
+    static func create() {
+        log("Create a new view model")
+    }
+
 }

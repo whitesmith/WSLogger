@@ -15,4 +15,8 @@ class ViewController: UIViewController, Loggable {
         log("Test from WSLogger")
     }
 
+    class func register() {
+        log("Test using Loggable")
+    }
+
 }
