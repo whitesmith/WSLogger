@@ -12,7 +12,8 @@ class ViewController: UIViewController, Loggable {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        log("Test from WSLogger")
+        log("Test using Loggable")
+        logEntry(NSUUID().UUIDString, message: "App has started", level: .Info)
     }
 
     class func register() {
