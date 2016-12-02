@@ -10,4 +10,5 @@ import Foundation
 
 public protocol WSLoggable {
     func log(message: String, level: WSLogLevel, customAttributes: [String:AnyObject]?, fileName: NSString, line: Int, function: String)
+    static func log(message: String, level: WSLogLevel, customAttributes: [String:AnyObject]?, fileName: NSString, line: Int, function: String)
 }
