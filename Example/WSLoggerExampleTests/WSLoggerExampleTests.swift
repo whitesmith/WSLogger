@@ -13,7 +13,7 @@ class WSLoggerExampleTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        LoggerOptions.defaultLevel = .None
+        LoggerOptions.defaultLevel = .none
     }
 
     func testExample() {

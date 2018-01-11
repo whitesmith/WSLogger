@@ -10,10 +10,10 @@ import Foundation
 
 /// Severity of the log.
 public enum WSLogLevel: Int {
-    case None
-    case Error
-    case Warning
-    case Info
-    case Debug
-    case Verbose
+    case none
+    case error
+    case warning
+    case info
+    case debug
+    case verbose
 }

@@ -13,9 +13,9 @@ class ViewController: UIViewController, Loggable {
     override func viewDidLoad() {
         super.viewDidLoad()
         log("Test using Loggable")
-        logEntry(NSUUID().UUIDString, message: "App has started", level: .Info)
-        logEntryIf(true, message: "App is not ready", level: .Warning)
-        logEntryIf(false, message: "App is ready", level: .Warning)
+        logEntry(identifier: NSUUID().uuidString, message: "App has started", level: .info)
+        logEntryIf(true, message: "App is not ready", level: .warning)
+        logEntryIf(false, message: "App is ready", level: .warning)
         logError(NSError.init(domain: "co.whitesmith.WSLoggerExample", code: 100, userInfo: [NSLocalizedDescriptionKey: "App is not running"]))
     }
 
