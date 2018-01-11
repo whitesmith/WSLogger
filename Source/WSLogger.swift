@@ -46,7 +46,7 @@ final public class WSLogger {
             traceInfo += className.isEmpty ? function : className + "." + function
             traceInfo += " "
         }
-        let text = "\(traceInfo)\(String.init(describing: level).uppercased()) \"\(message)\" [\(customAttributes ?? [:])]"
+        let text = "\(traceInfo)\(String(describing: level).uppercased()) \"\(message)\" " + (customAttributes == nil ? "[nil]" : "\(customAttributes!)")
         printable.print(text)
         return text
     }

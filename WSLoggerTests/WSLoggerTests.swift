@@ -60,7 +60,7 @@ class WSLoggerTests: XCTestCase {
         WSLogger.shared.traceMethod = true
         WSLogger.shared.log("Nice, really nice.", level: .info, customAttributes: ["user": 4])
         if let message = Recorder.messages.first {
-            XCTAssertTrue(message == "testCustomAttributesLog() INFO \"Nice, really nice.\" [Optional([\"user\": 4])]")
+            XCTAssertTrue(message == "testCustomAttributesLog() INFO \"Nice, really nice.\" [\"user\": 4]")
         }
     }
 
