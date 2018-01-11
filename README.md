@@ -18,10 +18,10 @@ For example, create a `Logger.swift` and add your implementation of `WSLoggable`
 import WSLogger
 
 extension WSLoggable {
-    func log(message: String, level: WSLogLevel = .Debug, customAttributes: [String : AnyObject]? = nil, fileName: NSString = #file, line: Int = #line, function: String = #function) {
+    func log(_ message: String, level: WSLogLevel = .debug, customAttributes: [String : Any]? = nil, className: String = "", fileName: NSString = #file, line: Int = #line, function: String = #function) {
         // Log internally
-        WSLogger.shared.log(message, level: level, customAttributes: customAttributes, className: String(self.dynamicType), fileName: fileName, line: line, function: function)
-        // Log remotely
+        let text = WSLogger.shared.log(message, level: level, customAttributes: customAttributes, className: String(describing: type(of: self)), fileName: fileName, line: line, function: function)
+        // Log remotely using `text`.
         // Fabric, LogEntries, etc.
     }
 }
@@ -48,9 +48,9 @@ struct WSTableViewCell: Loggable {
 }
 ```
 
-It's possible to change the log level with `LoggerOptions.defaultLevel` property. For example, if `LoggerOptions.defaultLevel ` is `Debug` then all the `Verbose` entries will be ignored.
+It's possible to change the log level with `LoggerOptions.defaultLevel` property. For example, if `LoggerOptions.defaultLevel ` is `debug` then all the `verbose` entries will be ignored.
 
-You can add `LoggerOptions.defaultLevel = .None` to discard any log events on your test suite. It's also possible ignoring classes with `Logger.shared.ignoreClass(WSTableViewCell)`.
+You can add `LoggerOptions.defaultLevel = .none` to discard any log events on your test suite. It's also possible ignoring classes with `Logger.shared.ignoreClass(WSTableViewCell)`.
 
 You can execute those operations in debug mode as well. Just write in the console `expr -- Logger.shared.ignoreClass(WSTableViewCell)`.
 
@@ -75,11 +75,11 @@ func loggerSetup() {
 }
 
 extension WSLoggable {
-    func log(message: String, level: WSLogLevel = .Debug, customAttributes: [String : AnyObject]? = nil, fileName: NSString = #file, line: Int = #line, function: String = #function) {
+    func log(_ message: String, level: WSLogLevel = .debug, customAttributes: [String : Any]? = nil, className: String = "", fileName: NSString = #file, line: Int = #line, function: String = #function) {
         // Log internally
-        let text = WSLogger.shared.log(message, level: level, customAttributes: customAttributes, className: String(self.dynamicType), fileName: fileName, line: line, function: function)
+        let text = WSLogger.shared.log(message, level: level, customAttributes: customAttributes, className: String(describing: type(of: self)), fileName: fileName, line: line, function: function)
         // Log remotely
-        LELog.sharedInstance().log(text)
+        LELog.sharedInstance().log(text as NSObject)
     }
 }
 ```
