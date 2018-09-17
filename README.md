@@ -5,7 +5,7 @@
 [![CocoaPods Compatible](https://img.shields.io/cocoapods/v/WSLogger.svg)](https://cocoapods.org/pods/WSLogger)
 [![Swift 3.0](https://img.shields.io/badge/Swift-3.0-orange.svg?style=flat)](https://developer.apple.com/swift/)
 [![Platforms iOS](https://img.shields.io/badge/Platforms-iOS-lightgray.svg?style=flat)](http://www.apple.com/ios/)
-[![Build Status](https://www.bitrise.io/app/c0d00066e83871d0.svg?token=F4rPP7Jp0rT4dUqaE63fuw&branch=master)](https://www.bitrise.io/app/059bc89743c769dc)
+[![Build Status](https://app.bitrise.io/app/c0d00066e83871d0/status.svg?token=F4rPP7Jp0rT4dUqaE63fuw&branch=master)]()
 [![License MIT](https://img.shields.io/badge/License-MIT-lightgrey.svg?style=flat)](https://opensource.org/licenses/MIT)
 
 An iOS logger where it's possible to extend the log functionality.
