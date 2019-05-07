@@ -1,9 +1,8 @@
 # WSLogger
 
 [![Carthage Compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg)](https://github.com/Carthage/Carthage)
-[![SwiftPM Compatible](https://img.shields.io/badge/SwiftPM-Compatible-brightgreen.svg)](https://swift.org/package-manager/)
 [![CocoaPods Compatible](https://img.shields.io/cocoapods/v/WSLogger.svg)](https://cocoapods.org/pods/WSLogger)
-[![Swift 3.0](https://img.shields.io/badge/Swift-3.0-orange.svg?style=flat)](https://developer.apple.com/swift/)
+[![Swift 5.0](https://img.shields.io/badge/Swift-5.0-orange.svg?style=flat)](https://developer.apple.com/swift/)
 [![Platforms iOS](https://img.shields.io/badge/Platforms-iOS-lightgray.svg?style=flat)](http://www.apple.com/ios/)
 [![Build Status](https://app.bitrise.io/app/c0d00066e83871d0/status.svg?token=F4rPP7Jp0rT4dUqaE63fuw&branch=master)]()
 [![License MIT](https://img.shields.io/badge/License-MIT-lightgrey.svg?style=flat)](https://opensource.org/licenses/MIT)
@@ -131,7 +130,7 @@ Download all the source files and drop them into your project.
 ## Requirements
 
 * iOS 8.0+
-* Xcode 8.3 (Swift 3.0)
+* Xcode 10 (Swift 4.0)
 
 # Contributing
 
