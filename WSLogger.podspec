@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "WSLogger"
-  s.version          = "2.0.0"
+  s.version          = "3.0.0"
   s.summary          = "An iOS logger where it's possible to extend the log functionality"
   s.homepage         = "https://github.com/whitesmith/WSLogger"
   s.license          = 'MIT'
