@@ -8,7 +8,7 @@ Pod::Spec.new do |s|
   s.source           = { :git => "https://github.com/whitesmith/WSLogger.git", :tag => s.version.to_s }
   s.social_media_url = 'https://twitter.com/whitesmithco'
 
-  s.platform     = :ios, '8.0'
+  s.platform     = :ios, '9.0'
   s.requires_arc = true
   s.swift_version = '5.0'
 
