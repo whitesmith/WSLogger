@@ -37,7 +37,7 @@ class WSLoggerTests: XCTestCase {
     func testDefaultLog() {
         WSLogger.shared.log("Let's go!")
         if let message = Recorder.messages.first {
-            XCTAssertTrue(message == "DEBUG \"Let's go!\" [nil]")
+            XCTAssertTrue(message == "DEBUG \"Let's go!\" []")
         }
     }
 
@@ -52,7 +52,7 @@ class WSLoggerTests: XCTestCase {
         WSLoggerOptions.defaultLevel = .verbose
         WSLogger.shared.log("ZZZzzZzZZZ", level: .verbose, customAttributes: nil, className: String(describing: type(of: self)))
         if let message = Recorder.messages.first {
-            XCTAssertTrue(message == "VERBOSE \"ZZZzzZzZZZ\" [nil]")
+            XCTAssertEqual(message, "VERBOSE \"ZZZzzZzZZZ\" []")
         }
     }
 
@@ -60,7 +60,7 @@ class WSLoggerTests: XCTestCase {
         WSLogger.shared.traceMethod = true
         WSLogger.shared.log("Nice, really nice.", level: .info, customAttributes: ["user": 4])
         if let message = Recorder.messages.first {
-            XCTAssertTrue(message == "testCustomAttributesLog() INFO \"Nice, really nice.\" [\"user\": 4]")
+            XCTAssertEqual(message, "testCustomAttributesLog() INFO \"Nice, really nice.\" [user: 4]")
         }
     }
 
@@ -69,7 +69,7 @@ class WSLoggerTests: XCTestCase {
         WSLogger.shared.traceMethod = true
         WSLogger.shared.log("Nice, really nice.", level: .info, customAttributes: nil, className: String(describing: type(of: self)))
         if let message = Recorder.messages.first {
-            XCTAssertTrue(message == "WSLoggerTests.swift:70 WSLoggerTests.testCompleteTraceLog() INFO \"Nice, really nice.\" [nil]")
+            XCTAssertEqual(message, "WSLoggerTests.swift:70 WSLoggerTests.testCompleteTraceLog() INFO \"Nice, really nice.\" []")
         }
     }
 
@@ -77,6 +77,33 @@ class WSLoggerTests: XCTestCase {
         WSLogger.shared.ignoreClass(WSLoggerTests.self)
         WSLogger.shared.log("Great!", level: .verbose, customAttributes: nil, className: String(describing: type(of: self)))
         XCTAssertTrue(Recorder.messages.count == 0)
+    }
+
+    func testLoggerWithCustomAttributes() {
+        WSLoggerOptions.defaultLevel = .verbose
+        WSLogger.shared.log("Oh oh", level: .verbose, customAttributes: ["code": 1, "status": "failure", "reason": "unknown"], className: String(describing: type(of: self)))
+        if let message = Recorder.messages.first {
+            print(message)
+            let expectedResult = """
+                VERBOSE "Oh oh" [code: 1, reason: unknown, status: failure]
+                """
+            XCTAssertEqual(message, expectedResult)
+        }
+    }
+
+    func testLoggerWithCustomAttributesAndCustomSort() {
+        WSLoggerOptions.defaultLevel = .verbose
+        let sortClosure: (String, String) throws -> Bool = { a, b in
+            return a > b
+        }
+        WSLogger.shared.log("Oh oh", level: .verbose, customAttributes: ["code": 1, "status": "failure", "reason": "unknown"], customAttributesSortBy: sortClosure, className: String(describing: type(of: self)))
+        if let message = Recorder.messages.first {
+            print(message)
+            let expectedResult = """
+                VERBOSE "Oh oh" [status: failure, reason: unknown, code: 1]
+                """
+            XCTAssertEqual(message, expectedResult)
+        }
     }
 
 }

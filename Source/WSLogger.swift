@@ -34,7 +34,7 @@ final public class WSLogger {
 
     /// Log locally
     @discardableResult
-    public func log(_ message: String, level: WSLogLevel = .debug, customAttributes: [String : Any]? = nil, className: String = "", fileName: NSString = #file, line: Int = #line, function: String = #function) -> String {
+    public func log(_ message: String, level: WSLogLevel = .debug, customAttributes: [String : Any]? = nil, customAttributesSortBy: ((String, String) throws -> Bool)? = nil, className: String = "", fileName: NSString = #file, line: Int = #line, function: String = #function) -> String {
         assert(level != .none)
         guard logAllowed(level, className: className) else { return "" }
 
@@ -46,7 +46,16 @@ final public class WSLogger {
             traceInfo += className.isEmpty ? function : className + "." + function
             traceInfo += " "
         }
-        let text = "\(traceInfo)\(String(describing: level).uppercased()) \"\(message)\" " + (customAttributes == nil ? "[nil]" : "\(customAttributes!)")
+        var customAttributesText = "[]"
+        if let customAttributes = customAttributes, !customAttributes.isEmpty {
+            let sortedCustomAttributes = customAttributesSortBy == nil ? customAttributes.keys.sorted() : try! customAttributes.keys.sorted(by: customAttributesSortBy!)
+            customAttributesText = "["
+            customAttributesText += sortedCustomAttributes.map({ key in
+                return "\(key): \(customAttributes[key]!)"
+            }).joined(separator: ", ")
+            customAttributesText += "]"
+        }
+        let text = "\(traceInfo)\(String(describing: level).uppercased()) \"\(message)\" \(customAttributesText)"
         printable.print(text)
         return text
     }
