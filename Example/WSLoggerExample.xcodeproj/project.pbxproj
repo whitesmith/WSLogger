@@ -166,7 +166,6 @@
 				D7D35E781DB228BF005CD7E9 /* Frameworks */,
 				D7D35E791DB228BF005CD7E9 /* Resources */,
 				D7D35E9E1DB22A63005CD7E9 /* Embed Frameworks */,
-				D73F32481DB2A90F00E7DBF4 /* Carthage */,
 			);
 			buildRules = (
 			);
@@ -278,24 +277,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		D73F32481DB2A90F00E7DBF4 /* Carthage */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/iOS/lelib.framework",
-			);
-			name = Carthage;
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		D7D35E771DB228BF005CD7E9 /* Sources */ = {
