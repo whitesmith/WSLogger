@@ -9,6 +9,9 @@
 //
 
 import Foundation
+#if canImport(OSLog)
+import OSLog
+#endif
 
 public struct WSLoggerOptions {
     /// Ex: if `level` is DEBUG then all the VERBOSE entries will be ignored.
@@ -16,27 +19,46 @@ public struct WSLoggerOptions {
     public static var defaultLevel = WSLogLevel.debug
 }
 
-final public class WSLogger {
+public enum WSLoggerCategory: String, CaseIterable {
+    case global
+}
+
+public typealias WSGlobalLogger = WSLogger<WSLoggerCategory>
+
+final public class WSLogger<C: RawRepresentable & CaseIterable> where C.RawValue == String {
 
     internal var printable: WSPrintable
     internal var disabledSymbols = Set<String>()
-
-    public fileprivate(set) static var shared = WSLogger()
 
     /// Show the filename and line number on the log entry.
     public var traceFile: Bool = false
     /// Show the class and function on the log entry.
     public var traceMethod: Bool = false
 
-    public init() {
-        self.printable = WSConsole()
+    public init(customPrintable: WSPrintable? = nil) {
+        if let customPrintable {
+            self.printable = customPrintable
+        }
+        else if #available(iOS 14.0, macOS 10.10, macCatalyst 13.0, tvOS 14.0, watchOS 7.0, *) {
+            #if canImport(OSLog)
+            self.printable = WSOSLogPrint()
+            #else
+            self.printable = WSSwiftPrint()
+            #endif
+        }
+        else {
+            self.printable = WSSwiftPrint()
+        }
     }
 
     /// Log locally
     @discardableResult
-    public func log(_ message: String, level: WSLogLevel = .debug, customAttributes: [String : Any]? = nil, customAttributesSortBy: ((String, String) throws -> Bool)? = nil, className: String = "", fileName: NSString = #file, line: Int = #line, function: String = #function) -> String {
-        assert(level != .none)
-        guard logAllowed(level, className: className) else { return "" }
+    public func log(_ message: String, category: C, level: WSLogLevel = .debug, customAttributes: [String : Any]? = nil, customAttributesSortBy: ((String, String) throws -> Bool)? = nil, className: String = "", fileName: NSString = #file, line: Int = #line, function: String = #function) -> String {
+        guard 
+            logAllowed(level, className: className)
+        else {
+            return "" //ignore
+        }
 
         var traceInfo = ""
         if traceFile {
@@ -46,6 +68,7 @@ final public class WSLogger {
             traceInfo += className.isEmpty ? function : className + "." + function
             traceInfo += " "
         }
+
         var customAttributesText = "[]"
         if let customAttributes = customAttributes, !customAttributes.isEmpty {
             let sortedCustomAttributes = customAttributesSortBy == nil ? customAttributes.keys.sorted() : try! customAttributes.keys.sorted(by: customAttributesSortBy!)
@@ -55,14 +78,14 @@ final public class WSLogger {
             }).joined(separator: ", ")
             customAttributesText += "]"
         }
+
         let text = "\(traceInfo)\(String(describing: level).uppercased()) \"\(message)\" \(customAttributesText)"
-        printable.print(text)
+        printable.print(text, level: level, category: category.rawValue)
         return text
     }
 
     /// Reset logger settings.
     public func reset() {
-        printable = WSConsole()
         traceFile = false
         traceMethod = false
         disabledSymbols.removeAll()
@@ -74,17 +97,73 @@ final public class WSLogger {
     }
 
     fileprivate func logAllowed(_ level: WSLogLevel, className: String) -> Bool {
-        return level.rawValue <= WSLoggerOptions.defaultLevel.rawValue && !disabledSymbols.contains(className)
+        return level != .none && level.rawValue <= WSLoggerOptions.defaultLevel.rawValue && !disabledSymbols.contains(className)
     }
 
 }
 
-internal protocol WSPrintable {
-    func print(_ message: String)
+public protocol WSPrintable {
+    func print(_ message: String, level: WSLogLevel, category: String)
 }
 
-private class WSConsole: WSPrintable {
-    func print(_ message: String) {
-        Swift.print("\(Date()) \(message)")
+private class WSSwiftPrint: WSPrintable {
+
+    func print(_ message: String, level: WSLogLevel, category: String) {
+        let symbol: String
+        switch (level) {
+        case .debug:
+            symbol = ""
+        case .none:
+            symbol = ""
+        case .error:
+            symbol = "🔴"
+        case .warning:
+            symbol = "🟡"
+        case .info:
+            symbol = "🔵"
+        case .verbose:
+            symbol = ""
+        }
+
+        Swift.print("\(symbol) \(Date()) |\(category.uppercased())| \(message)")
     }
+
 }
+
+#if canImport(OSLog)
+@available(iOS 14.0, macOS 10.10, macCatalyst 13.0, tvOS 14.0, watchOS 7.0, *)
+private class WSOSLogPrint: WSPrintable {
+
+    private var loggers: [String: Logger] = [:]
+
+    func getLogger(category: String) -> Logger {
+        if let existingLogger = loggers[category] {
+            return existingLogger
+        } 
+        else {
+            let newLogger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: category)
+            loggers[category] = newLogger
+            return newLogger
+        }
+    }
+
+    func print(_ message: String, level: WSLogLevel, category: String) {
+        let oslogger = getLogger(category: category.lowercased())
+        switch (level) {
+        case .none:
+            break
+        case .debug:
+            oslogger.debug("\(message)")
+        case .error:
+            oslogger.critical("\(message)")
+        case .warning:
+            oslogger.warning("\(message)")
+        case .info:
+            oslogger.info("\(message)")
+        case .verbose:
+            oslogger.trace("\(message)")
+        }
+    }
+
+}
+#endif

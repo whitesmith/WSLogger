@@ -8,19 +8,20 @@
 
 import UIKit
 
-class ViewController: UIViewController, Loggable {
+class MainViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        log("Test using Loggable")
-        logEntry(identifier: NSUUID().uuidString, message: "App has started", level: .info)
+        logEntry("Test using Loggable")
+        logEntry(identifier: NSUUID().uuidString, message: "App has started", level: .info, category: .ui)
         logEntryIf(true, message: "App is not ready", level: .warning)
         logEntryIf(false, message: "App is ready", level: .warning)
         logError(NSError.init(domain: "co.whitesmith.WSLoggerExample", code: 100, userInfo: [NSLocalizedDescriptionKey: "App is not running"]))
+        logEntry("Point 0..1", level: .verbose)
     }
 
     class func register() {
-        log("Test using Loggable")
+        logEntry("Test using Loggable")
     }
 
 }

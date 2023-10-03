@@ -8,14 +8,14 @@
 
 import Foundation
 
-struct ViewModel: Loggable {
+struct ViewModel {
 
     func configure() {
-        log("Bind model data with views")
+        logEntry("Bind model data with views")
     }
 
     static func create() {
-        log("Create a new view model")
+        logEntry("Create a new view model")
     }
 
 }
