@@ -1,5 +1,5 @@
-fastlane_version "1.99.0"
-REQUIRED_XCODE_VERSION = "7.3"
+fastlane_version "2.213.0"
+REQUIRED_XCODE_VERSION = "15.0"
 default_platform :ios
 
 platform :ios do
@@ -19,6 +19,5 @@ platform :ios do
   lane :release do |options|
     version_bump_project bump_type: options[:bump]
     version_bump_podspec bump_type: options[:bump]
-    clean_build_artifacts
   end
 end
