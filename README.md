@@ -1,15 +1,16 @@
 # WSLogger
 
-[![Carthage Compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg)](https://github.com/Carthage/Carthage)
+[![SPM Compatible](https://img.shields.io/badge/SPM-compatible-4BC51D.svg)](https://www.swift.org/package-manager/)
 [![CocoaPods Compatible](https://img.shields.io/cocoapods/v/WSLogger.svg)](https://cocoapods.org/pods/WSLogger)
-[![Platforms iOS](https://img.shields.io/badge/Platforms-iOS-lightgray.svg?style=flat)](http://www.apple.com/ios/)
-[![License MIT](https://img.shields.io/badge/License-MIT-lightgrey.svg?style=flat)](https://opensource.org/licenses/MIT)
+[![Platforms](https://img.shields.io/badge/platforms-iOS%2C%20macOS%2C%20watchOS%2C%20tvOS%2C%20visionOS-lightgrey.svg)](http://www.apple.com/ios/)
 
-An iOS logger where it's possible to extend the log functionality.
+An extensible iOS logger on top of [OSLog](https://developer.apple.com/documentation/os/oslog) - the replacement for `print`, and `NSLog` and Apple’s recommended way of logging.
+
+> OSLog has a low-performance overhead and is archived on the device for later retrieval. You can read logs using the external Console app or benefit from structured logging directly inside Xcode 15. Altogether, obtaining structured logging via OSLog is far better than using print statements.
 
 ## Usage
 
-For example, create a `Logger.swift` and add your implementation of `WSLoggable`:
+An example of expanding all log entries using `WSLoggable`:
 
 ``` swift
 import WSLogger
@@ -19,10 +20,9 @@ extension WSLoggable {
         // Log internally
         let text = WSLogger.shared.log(message, level: level, customAttributes: customAttributes, className: String(describing: type(of: self)), fileName: fileName, line: line, function: function)
         // Log remotely using `text`.
-        // Fabric, LogEntries, etc.
+        // Sentry, DataDog, LogEntries, etc.
     }
 }
-
 ```
 
 You can add a `typealias` to avoid importing the `WSLogger` on every file:
@@ -31,7 +31,6 @@ You can add a `typealias` to avoid importing the `WSLogger` on every file:
 typealias Loggable = WSLoggable
 typealias LoggerOptions = WSLoggerOptions
 typealias LogLevel = WSLogLevel
-
 ```
 
 Then use the protocol `Loggable` where you want. The function `log` will be accessible:
@@ -45,7 +44,7 @@ struct WSTableViewCell: Loggable {
 }
 ```
 
-It's possible to change the log level with `LoggerOptions.defaultLevel` property. For example, if `LoggerOptions.defaultLevel ` is `debug` then all the `verbose` entries will be ignored.
+It is possible to change the log level with `LoggerOptions.defaultLevel` property. For example, if `LoggerOptions.defaultLevel ` is `debug` then all the `verbose` entries will be ignored.
 
 You can add `LoggerOptions.defaultLevel = .none` to discard any log events on your test suite. It's also possible ignoring classes with `Logger.shared.ignoreClass(WSTableViewCell)`.
 
@@ -61,20 +60,33 @@ You can extend the log mechanism as you want. For example, if you want to access
 ``` swift
 import Foundation
 import WSLogger
-import lelib //LogEntries iOS lib
+import LogEntries //LogEntries iOS lib
+
+public enum LoggerCategory: String, CaseIterable {
+    case global
+    case network
+    case ui
+    case cache
+}
+
+private var loggerQueue: DispatchQueue!
+private var logger: WSLogger<LoggerCategory>!
 
 func loggerSetup() {
-    LoggerOptions.defaultLevel = .Debug
-    WSLogger.shared.traceFile = true
-    WSLogger.shared.traceMethod = true
+    LoggerOptions.defaultLevel = .verbose
+    loggerQueue = DispatchQueue(label: "Logger", qos: .utility)
+    logger = WSLogger<LoggerCategory>()
+    logger.traceFile = true
+    logger.traceMethod = true
     // LogEntries
     LELog.sharedInstance().token = "XXXX-XXX-XXX-XXXX"
 }
 
 extension WSLoggable {
     func log(_ message: String, level: WSLogLevel = .debug, customAttributes: [String : Any]? = nil, className: String = "", fileName: NSString = #file, line: Int = #line, function: String = #function) {
+    loggerQueue.async {
         // Log internally
-        let text = WSLogger.shared.log(message, level: level, customAttributes: customAttributes, className: String(describing: type(of: self)), fileName: fileName, line: line, function: function)
+        let text = logger.log(message, level: level, customAttributes: customAttributes, className: String(describing: type(of: self)), fileName: fileName, line: line, function: function)
         // Log remotely
         LELog.sharedInstance().log(text as NSObject)
     }
@@ -85,23 +97,6 @@ The complete example is available [here](https://github.com/whitesmith/WSLogger/
 
 
 ## Installation
-
-#### <img src="https://cloud.githubusercontent.com/assets/432536/5252404/443d64f4-7952-11e4-9d26-fc5cc664cb61.png" width="24" height="24"> [Carthage]
-
-[Carthage]: https://github.com/Carthage/Carthage
-
-To install it, simply add the following line to your **Cartfile**:
-
-```ruby
-github "whitesmith/WSLogger"
-```
-
-Then run `carthage update`.
-
-Follow the current instructions in [Carthage's README][carthage-installation]
-for up to date installation instructions.
-
-[carthage-installation]: https://github.com/Carthage/Carthage#adding-frameworks-to-an-application
 
 #### <img src="https://raw.githubusercontent.com/ricardopereira/resources/master/img/cocoapods.png" width="24" height="24"> [CocoaPods]
 
@@ -127,8 +122,8 @@ Download all the source files and drop them into your project.
 
 ## Requirements
 
-* iOS 8.0+
-* Xcode 10 (Swift 5.0)
+* iOS 12.0+
+* Xcode 13 (Swift 5.0)
 
 # Contributing
 
